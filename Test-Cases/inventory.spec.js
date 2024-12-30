@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 import { login } from '../Resources/functions';
 
-import { baseUrl, inventoryPage } from '../Resources/url';
+// import { baseUrl, inventoryPage } from '../Resources/url';
 
 let page, context;
 
