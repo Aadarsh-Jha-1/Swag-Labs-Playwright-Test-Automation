@@ -8,7 +8,7 @@ let page, context;
 
 test.describe('set test cases for Inventory Page', () => {
 
-    let producItem, sortingDropdown, navBtn;
+    let producItem, sortingDropdown, navBtn,itemsInCart;
 
     
     test.beforeEach(async ({ browser }) => {
@@ -22,6 +22,8 @@ test.describe('set test cases for Inventory Page', () => {
         sortingDropdown = page.locator('[data-test="product-sort-container"]');
 
         navBtn = page.locator('#react-burger-menu-btn');
+
+        itemsInCart = page.locator("//span[@class='shopping_cart_badge']");
 
        
     });
@@ -214,6 +216,9 @@ test('Navigation Bar Redirections - All Items', async () => {
 
         await expect(page).toHaveTitle('Swag Labs');
 
+        // check number of products in cart 
+
+        await expect(itemsInCart).not.toBeVisible();
 
         // Change the App State - Add Some product in the cart.
 
@@ -226,7 +231,15 @@ test('Navigation Bar Redirections - All Items', async () => {
 
         await bikeLightAddToCart.click();
 
-       // Test About Button  In Nav Bar
+
+        // check the number of products in cart 
+
+        await expect(itemsInCart).toBeVisible();
+
+        await expect(itemsInCart).toContainText("2");
+
+       
+        // Test About Button  In Nav Bar
 
         await navBtn.click();
 
@@ -238,9 +251,9 @@ test('Navigation Bar Redirections - All Items', async () => {
 
         await page.waitForTimeout(2000);
 
-        // validate you are on The About Page
+        // validate cart is reset and badge is not visible as default
 
-       await expect(page).toHaveURL('https://www.saucedemo.com/');
+        await expect(itemsInCart).not.toBeVisible();
 
 
     });
