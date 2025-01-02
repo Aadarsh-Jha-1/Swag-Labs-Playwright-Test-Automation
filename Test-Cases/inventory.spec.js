@@ -2,13 +2,13 @@ import { test, expect } from '@playwright/test';
 
 import { login } from '../Resources/functions';
 
-// import { baseUrl, inventoryPage } from '../Resources/url';
+ import { cartPage } from '../Resources/url';
 
 let page, context;
 
 test.describe('set test cases for Inventory Page', () => {
 
-    let producItem, sortingDropdown, navBtn,itemsInCart;
+    let producItem, sortingDropdown, navBtn,itemsInCart, cartButton;
 
     
     test.beforeEach(async ({ browser }) => {
@@ -24,6 +24,8 @@ test.describe('set test cases for Inventory Page', () => {
         navBtn = page.locator('#react-burger-menu-btn');
 
         itemsInCart = page.locator("//span[@class='shopping_cart_badge']");
+
+        cartButton = page.locator("//a[@class='shopping_cart_link']");
 
        
     });
@@ -258,14 +260,19 @@ test('Navigation Bar Redirections - All Items', async () => {
 
     });
 
+    test('Navigate to cart page by clicking cart badge button', async () =>{
 
+        await login(page, 'standard_user', 'secret_sauce');
 
+        await expect(page).toHaveTitle('Swag Labs');
 
+        await cartButton.click();
 
+        await page.waitForTimeout(2000);
 
+        await expect(page).toHaveURL(cartPage);
 
-
-
+    })
 
     
     test.afterEach(async () => {
