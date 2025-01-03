@@ -21,3 +21,13 @@ export async function login(page,username,password){
     await loginBtn.click();
 
 }
+
+export async function navigateToProductPage(page,username,password){
+
+        await login(page,username,password);
+
+        await page.getByText('Sauce Labs Backpack').click();
+
+        await page.waitForTimeout(3000);
+    
+    }
