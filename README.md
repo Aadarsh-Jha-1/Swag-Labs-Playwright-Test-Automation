@@ -26,17 +26,11 @@ SwagLabsTestAutomation/
 │   ├── test-Data.js            # Test data (e.g., username, password)
 │   └── urls.js                 # URLs for the pages
 │
-├── Pages/
-│   ├── loginPage.js            # Page object for the login page
-│   ├── inventoryPage.js        # Page object for the inventory page
-│   ├── cartPage.js             # Page object for the cart page
-│   └── productPage.js          # Page object for a product page
-│
 ├── tests/
-│   └── inventory.test.js       # Test script for testing inventory page actions
-│   └── login.test.js           # Test script for testing login functionality
-│   └── cart.test.js            # Test script for testing cart functionality
-│   └── navigation.test.js      # Test script for testing navigation bar actions
+│   └── inventory.spec.js         # Test script for testing inventory page actions
+│   └── login.spec.js             # Test script for testing login functionality
+│   └── product-checkout.spec.js  # Test script for testing checkout functionality
+│   └── productPage.spec.js       # Test script for testing product page functionality
 │
 ├── playwright.config.js        # Playwright configuration file
 └── README.md                   # Project documentation
