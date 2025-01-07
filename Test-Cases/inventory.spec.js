@@ -2,7 +2,9 @@ import { test, expect } from '@playwright/test';
 
 import { login } from '../Resources/functions';
 
- import { cartPage } from '../Resources/url';
+import { cartPage } from '../Resources/url';
+
+import { username, password } from '../Resources/test-Data';
 
 let page, context;
 
@@ -34,7 +36,7 @@ test.describe('set test cases for Inventory Page', () => {
     
     test('Validate total number of products on inventory page', async () => {
 
-        await login(page, 'standard_user', 'secret_sauce');
+        await login(page, username, password);
 
         await expect(page).toHaveTitle('Swag Labs');
         
@@ -47,7 +49,7 @@ test.describe('set test cases for Inventory Page', () => {
 
     test('Validate sorting Name (A To Z)', async () => {
 
-        await login(page, 'standard_user', 'secret_sauce');
+        await login(page, username, password);
 
         await expect(page).toHaveTitle('Swag Labs');
 
@@ -64,7 +66,7 @@ test.describe('set test cases for Inventory Page', () => {
 
     test('Validate sorting Name (Z To A)', async () => {
 
-        await login(page, 'standard_user', 'secret_sauce');
+        await login(page, username, password);
 
         await expect(page).toHaveTitle('Swag Labs');
 
@@ -80,7 +82,7 @@ test.describe('set test cases for Inventory Page', () => {
 
     test('Validate sorting Price (Low To High)', async () => {
 
-        await login(page, 'standard_user', 'secret_sauce');
+        await login(page, username, password);
 
         await expect(page).toHaveTitle('Swag Labs');
 
@@ -101,7 +103,7 @@ test.describe('set test cases for Inventory Page', () => {
 
     test('Validate sorting Price (High To Low)', async () => {
 
-        await login(page, 'standard_user', 'secret_sauce');
+        await login(page, username, password);
 
         await expect(page).toHaveTitle('Swag Labs');
 
@@ -126,7 +128,7 @@ test.describe('set test cases for Inventory Page', () => {
 
 test('Navigation Bar Redirections - All Items', async () => {
 
-        await login(page, 'standard_user', 'secret_sauce');
+        await login(page, username, password);
 
         await expect(page).toHaveTitle('Swag Labs');
 
@@ -161,7 +163,7 @@ test('Navigation Bar Redirections - All Items', async () => {
 
     test('Navigation Bar Redirections - About', async () => {
 
-        await login(page, 'standard_user', 'secret_sauce');
+        await login(page, username, password);
 
         await expect(page).toHaveTitle('Swag Labs');
 
@@ -188,7 +190,7 @@ test('Navigation Bar Redirections - All Items', async () => {
 
     test('Navigation Bar Redirections - Logout', async () => {
 
-        await login(page, 'standard_user', 'secret_sauce');
+        await login(page, username, password);
 
         await expect(page).toHaveTitle('Swag Labs');
 
@@ -214,7 +216,7 @@ test('Navigation Bar Redirections - All Items', async () => {
 
     test('Navigation Bar Redirections - Reset App State', async () => {
 
-        await login(page, 'standard_user', 'secret_sauce');
+        await login(page, username, password);
 
         await expect(page).toHaveTitle('Swag Labs');
 
@@ -262,7 +264,7 @@ test('Navigation Bar Redirections - All Items', async () => {
 
     test('Navigate to cart page by clicking cart badge button', async () =>{
 
-        await login(page, 'standard_user', 'secret_sauce');
+        await login(page, username, password);
 
         await expect(page).toHaveTitle('Swag Labs');
 

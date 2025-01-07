@@ -2,7 +2,9 @@ import { test, expect } from '@playwright/test';
 
 import { navigateToProductPage } from '../Resources/functions';
 
-import { inventoryPage } from '../Resources/url';
+import { inventoryPage, productPage } from '../Resources/url';
+
+import { username, password } from '../Resources/test-Data';
 
 let page, context;
 
@@ -30,22 +32,22 @@ test.describe('set of test cases for individual product page', () => {
 
     test('Navigation To Product Page', async () => {
 
-        await navigateToProductPage(page,'standard_user', 'secret_sauce');
+        await navigateToProductPage(page, username, password);
 
         //validate you are on the correct product page.
 
-        await expect(page).toHaveURL("https://www.saucedemo.com/inventory-item.html?id=4");
+        await expect(page).toHaveURL(productPage);
 
     })
 
 
     test('Add to cart Button', async () => {
 
-        await navigateToProductPage(page,'standard_user', 'secret_sauce');
+        await navigateToProductPage(page, username, password);
 
         //validate you are on the correct product page.
 
-        await expect(page).toHaveURL("https://www.saucedemo.com/inventory-item.html?id=4");
+        await expect(page).toHaveURL(productPage);
 
         await addToCart.click();
 
@@ -59,11 +61,11 @@ test.describe('set of test cases for individual product page', () => {
 
     test('Back To Products Button', async()=>{
 
-        await navigateToProductPage(page,'standard_user', 'secret_sauce');
+        await navigateToProductPage(page, username, password);
 
         //validate you are on the correct product page.
 
-        await expect(page).toHaveURL("https://www.saucedemo.com/inventory-item.html?id=4");
+        await expect(page).toHaveURL(productPage);
 
         await backToProducts.click();
 

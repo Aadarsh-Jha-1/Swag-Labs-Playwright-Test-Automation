@@ -2,13 +2,15 @@ import { test, expect } from '@playwright/test';
 
 import { login } from '../Resources/functions';
 
-import { inventoryPage } from '../Resources/url';
+import { cartPage, inventoryPage } from '../Resources/url';
+
+import { username, password } from '../Resources/test-Data';
 
 let page, context;
 
 test.describe('set test cases for product checkout flow', () => {
 
-    let producItem,itemsInCart, cartButton;
+    let producItem,itemsInCart, cartButton, CountinueShopping, backpackAddToCart,  bikeLightAddToCart, cancelBtn;
 
 test.beforeEach(async ({ browser }) => {
 
@@ -22,20 +24,24 @@ test.beforeEach(async ({ browser }) => {
 
     cartButton = page.locator("//a[@class='shopping_cart_link']");
 
-   
+    CountinueShopping = page.locator("#continue-shopping");
+
+    backpackAddToCart = page.locator('#add-to-cart-sauce-labs-backpack');
+
+    bikeLightAddToCart = page.locator('#add-to-cart-sauce-labs-bike-light');
+
+    cancelBtn = page.locator("#cancel");
+ 
 });
+
 
 test('Successful checkout flow', async () => {
 
-    await login(page, 'standard_user', 'secret_sauce');
+    await login(page, username, password);
 
     await expect(page).toHaveTitle('Swag Labs');
 
-    const backpackAddToCart = page.locator('#add-to-cart-sauce-labs-backpack');
-
     await backpackAddToCart.click();
-
-    const bikeLightAddToCart = page.locator('#add-to-cart-sauce-labs-bike-light');
 
     await bikeLightAddToCart.click();
 
@@ -155,6 +161,76 @@ test('Successful checkout flow', async () => {
 
 
 })
+
+test('Working Of Countinue Shopping Button On Cart Page', async () => {
+
+    await login(page, username, password);
+
+    await expect(page).toHaveTitle('Swag Labs');
+
+    await backpackAddToCart.click();
+
+    await bikeLightAddToCart.click();
+
+    await cartButton.click();
+
+    await CountinueShopping.click();
+
+    await expect(page).toHaveURL(inventoryPage);
+
+})
+
+test('Working of cancel Button on Your Information page ', async()=>{
+
+    await login(page, username, password);
+
+    await expect(page).toHaveTitle('Swag Labs');
+
+    await backpackAddToCart.click();
+
+    await bikeLightAddToCart.click();
+
+    await cartButton.click();
+
+    await page.locator('#checkout').click();
+
+    await cancelBtn.click();
+
+    await expect(page).toHaveURL(cartPage);
+
+
+
+})
+
+test('Working of cancel Button on Checkout Overview page ', async()=>{
+
+    await login(page, username, password);
+
+    await expect(page).toHaveTitle('Swag Labs');
+
+    await backpackAddToCart.click();
+
+    await bikeLightAddToCart.click();
+
+    await cartButton.click();
+
+    await page.locator('#checkout').click();
+
+    await page.getByPlaceholder('First Name').fill('Test');
+
+    await page.getByPlaceholder('Last Name').fill('Automation');
+
+    await page.getByPlaceholder('Zip/Postal Code').fill('123456');
+
+    await page.locator('#continue').click();
+
+    await cancelBtn.click();
+
+    await expect(page).toHaveURL(inventoryPage);
+
+
+})
+
 
 
 
