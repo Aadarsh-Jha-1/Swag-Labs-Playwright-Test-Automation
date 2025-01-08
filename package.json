@@ -18,6 +18,10 @@
   "homepage": "https://github.com/Aadarsh-Jha-1/Swag-Labs-Playwright-Test-Automation#readme",
   "devDependencies": {
     "@playwright/test": "^1.49.1",
-    "@types/node": "^22.10.2"
+    "@types/node": "^22.10.2",
+    "allure-playwright": "^3.0.8"
+  },
+  "dependencies": {
+    "node": "^23.5.0"
   }
 }
