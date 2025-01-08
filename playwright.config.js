@@ -15,10 +15,7 @@ module.exports = defineConfig({
   /* Single worker */
   workers: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [
-    ['dot'], // Default reporter
-    ['allure-playwright'], // Allure reporter integration
-  ],
+  reporter: 'html',
   /* Max test run time of 1 hour (3600 seconds) */
   timeout: 3600 * 1000,
   /* Shared settings for all the projects below. */
